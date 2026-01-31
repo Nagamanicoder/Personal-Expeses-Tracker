@@ -1,7 +1,7 @@
 /* style.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #0f0f0f;
     margin: 10px;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    background-size: cover;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -21,12 +21,25 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: #fff;
+}
+
+.display-budget{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #131313;
 }
 
 form {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 form input, form select, form button {
@@ -107,4 +120,38 @@ form button:hover {
 
 .action-btn:hover {
   opacity: 0.85;
+}
+
+.empty-msg {
+  text-align: center;
+}
+
+.budget{
+    text-align: center;
+}
+
+.top-budget {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+}
+
+#expensesForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-budget-warning{
+    color: rgb(245, 77, 77);
+    text-align: center;
+}
+
+.single-expense-row {
+  border-left: 2px solid rgb(245, 77, 77);
 }

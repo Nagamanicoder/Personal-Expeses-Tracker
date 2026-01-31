@@ -9,18 +9,30 @@
 <body class="bg">
     <h1 >Personal Expense Tracker</h1>
     <div class="container">
-        <form id="expensesForm" required>
-            <input type="text" name="expense name" id="expense-name" placeholder="Expense name">
-            <input type="number" name="amount" id="expense-amount" placeholder="Amount">
-            <select name="expense-category" id="expense-category">
-                <option value="select category">Select Category</option>
-                <option value="Food">Food</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Housing">Housing</option>
-                <option value="Other">other</option>
-            </select>
-            <input type="date" name="expense date" id="expense-date">
-            <button id="submit" class="submit-btn">Add Expense</button>
+        
+        <h2 class="display-budget" id="display-budget"></h2>
+        <p id="display-budget-warning" class="display-budget-warning"></p>
+        <div class="top-budget">
+            <div class="budget">
+                <input type="number" name="budget" id="budget" placeholder="Budget" required>
+            </div>
+        </div>
+        <form id="expensesForm">
+            
+            <div class="form-row">
+                <input type="text" name="expense name" id="expense-name" placeholder="Expense name" required>
+                <input type="number" name="amount" id="expense-amount" placeholder="Amount" required>
+                <select name="expense-category" id="expense-category" required>
+                    <option value="select category">Select Category</option>
+                    <option value="Food">Food</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Housing">Housing</option>
+                    <option value="Other">other</option>
+                </select>
+                <input type="date" name="expense date" id="expense-date" required>
+                <button id="submit" class="submit-btn">Add Expense</button>
+            </div>
+            
         </form>
         <div class="expense-table">
             <table>
@@ -38,7 +50,7 @@
             </table>
         </div>
         <div class="filter">
-            <h3><strong>Total:</strong> <span id="totalAmount"> 0 Rupee</span>  </h3>
+            <h3><strong>Total:</strong> ₹ <span id="totalAmount"> 0</span>  </h3>
             <label for="expense-category">Filter by Category</label>
             <select id="filter-category" >
                 <option value="All">All</option>
