@@ -1,0 +1,369 @@
+/* ======================================================
+   expenseTrackerPage.css
+   Expense Tracker styling - matches landing page colors
+   ====================================================== */
+
+/* ========== Design Tokens (matching landingPage.css) ========== */
+:root {
+    --accent: #3b82f6;
+    --accent-dark: #2563eb;
+    --muted: #6b7280;
+    --muted-light: #9ca3af;
+    --card: #ffffff;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+    --shadow-lg: 0 6px 18px rgba(17,24,39,0.06);
+}
+
+/* ========== Global Styles ========== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #f3f6ff 0%, #ffffff 100%);
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ========== Header ========== */
+.tracker-header {
+    background: linear-gradient(90deg, rgba(59,130,246,0.12), rgba(99,102,241,0.04));
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(15,23,42,0.03);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.tracker-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tracker-header h1 {
+    text-align: left;
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--accent);
+    flex: 1;
+}
+
+.back-link {
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background: rgba(59,130,246,0.08);
+    color: var(--accent);
+}
+
+/* ========== Info Section ========== */
+.info-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(59,130,246,0.1);
+}
+
+/* ========== Header ========== */
+
+.container {
+    background-size: cover;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: var(--card);
+    box-shadow: var(--shadow-lg);
+    border-radius: 12px;
+    max-width: 1000px;
+}
+
+/* ========== Display Info ========== */
+.display-budget,
+.display-balance {
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    color: #111827;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.display-budget {
+    color: var(--success);
+}
+
+.display-balance {
+    color: var(--accent);
+}
+
+.display-budget-warning {
+    color: var(--danger);
+    text-align: center;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+/* ========== Top Budget Section ========== */
+.top-budget {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.budget {
+    text-align: center;
+}
+
+.budget input {
+    padding: 10px 15px;
+    border: 2px solid rgba(59,130,246,0.2);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.budget input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ========== Forms ========== */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#expensesForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+}
+
+form input {
+    flex: 1;
+    min-width: 120px;
+}
+
+form select {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* ========== Buttons ========== */
+.submit-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+form button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: all 0.2s ease;
+}
+
+form button:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+.action-btn {
+    padding: 6px 12px;
+    margin-right: 6px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* ========== Expense Table ========== */
+.expense-table {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.expense-table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: var(--shadow-sm);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.expense-table th,
+.expense-table td {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.expense-table th {
+    background: linear-gradient(90deg, rgba(59,130,246,0.08), rgba(99,102,241,0.04));
+    color: #111827;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(59,130,246,0.2);
+}
+
+.expense-table tr:hover {
+    background-color: rgba(59,130,246,0.03);
+}
+
+.empty-msg {
+    text-align: center;
+    color: var(--muted);
+    padding: 20px;
+}
+
+/* ========== Action Buttons in Table ========== */
+.edit-btn {
+    background: var(--accent);
+    border-color: transparent;
+    border-radius: 6px;
+    color: white;
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+.edit-btn:hover {
+    background: var(--accent-dark);
+}
+
+.delete-btn {
+    background: var(--danger);
+    border-color: transparent;
+    border-radius: 6px;
+    color: white;
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+/* ========== Filter Section ========== */
+.filter {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.filter label {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.filter select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* ========== Utility Classes ========== */
+.total-amount {
+    text-align: right;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.single-expense-row {
+    border-left: 4px solid var(--danger);
+    background-color: rgba(239,68,68,0.03);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    form input,
+    form select {
+        width: 100%;
+    }
+
+    .expense-table {
+        font-size: 0.9rem;
+    }
+
+    .expense-table th,
+    .expense-table td {
+        padding: 8px;
+    }
+
+    .container {
+        margin: 15px auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+        margin: 15px 0;
+    }
+}

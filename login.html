@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Expense Tracker</title>
+    <link rel="stylesheet" href="landingPage.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1 class="brand">💰 Personalized Expense Tracker</h1>
+            <nav class="nav">
+                <a class="nav-link" href="landingPage.html">Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container auth-page">
+        <div class="auth-container">
+            <div class="auth-card card">
+                <h2>Welcome Back</h2>
+                <p class="auth-subtitle">Login to your expense tracker account</p>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <input id="login-email" type="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input id="login-password" type="password" placeholder="Enter your password" required>
+                    </div>
+                    <button class="btn primary full" type="submit" id="login-submit">Login</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>Don't have an account?</span>
+                </div>
+
+                <a class="btn ghost full" href="signup.html">Create an Account</a>
+
+                <p class="auth-footer">By logging in, you agree to our terms of service.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p><strong>Designed & Built by</strong> Nagamani</p>
+            <p class="tagline">For everyday usage</p>
+        </div>
+    </footer>
+
+    <script src="loginAuth.js" defer></script>
+</body>
+</html>

@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Personal expense tracker</title>
+    <link rel="stylesheet" href="expenseTrackerPage.css">
+    <title>Personal Expense Tracker</title>
 </head>
-<body class="bg">
-    <h1 >Personal Expense Tracker</h1>
+<body>
+    <header class="tracker-header">
+        <div class="tracker-container">
+            <h1>Personal Expense Tracker</h1>
+            <a href="landingPage.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
     <div class="container">
-        
-        <h2 class="display-budget" id="display-budget"></h2>
-        <p id="display-budget-warning" class="display-budget-warning"></p>
+        <div class="info-section">
+            <h3 class="display-budget" id="display-budget">Budget: ₹ 0</h3>
+            <h3 class="display-balance" id="display-balance">Balance: ₹ 0</h3>
+            <p id="display-budget-warning" class="display-budget-warning"></p>
+        </div>
         <div class="top-budget">
             <div class="budget">
                 <input type="number" name="budget" id="budget" placeholder="Budget" required>
@@ -63,5 +70,5 @@
     </div>
     
 </body>
-<script src="script.js"></script>
+<script src="expenseTrackerPage.js"></script>
 </html>
