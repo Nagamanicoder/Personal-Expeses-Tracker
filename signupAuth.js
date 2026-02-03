@@ -24,10 +24,10 @@ document.getElementById('signup-submit').addEventListener('click', (e) => {
         createdAt: new Date().toISOString()
     };
 
-    // Save user to localStorage
+    // Save user to localStorage (persistent user database)
     saveUser(user);
 
-    // Store current logged-in user
+    // Store current logged-in user in sessionStorage (current session)
     sessionStorage.setItem('currentUserId', userId);
 
     alert('Account created successfully!');
@@ -73,13 +73,13 @@ function validateSignup(name, email, password, confirmPassword) {
 }
 
 function userExists(email) {
-    const allUsers = sessionStorage.getItem('expenseTracker.users') || '{}';
+    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
     const users = JSON.parse(allUsers);
     return users.hasOwnProperty(email);
 }
 
 function saveUser(user) {
-    const allUsers = sessionStorage.getItem('expenseTracker.users') || '{}';
+    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
     const users = JSON.parse(allUsers);
     users[user.email] = {
         // name: user.name, //when database connection happens, then put all information into the database
@@ -87,6 +87,6 @@ function saveUser(user) {
         password: user.password, // In production, hash this!
         // createdAt: user.createdAt
     };
-    sessionStorage.setItem('expenseTracker.users', JSON.stringify(users));
+    localStorage.setItem('expenseTracker.users', JSON.stringify(users));
     console.log('User saved to localStorage');
 }

@@ -18,9 +18,8 @@ document.getElementById('login-submit').addEventListener('click', (e) => {
     // Use email as userId
     const userId = email;
 
-    // Store current logged-in user
+    // Store current logged-in user in sessionStorage (current session)
     sessionStorage.setItem('currentUserId', userId);
-
     alert('Login successful!');
     console.log('User logged in:', userId);
 
@@ -46,8 +45,8 @@ function validateLogin(email, password) {
 }
 
 function authenticateUser(email, password) {
-    // Retrieve all users from localStorage
-    const allUsers = sessionStorage.getItem('expenseTracker.users') || '{}';
+    // Retrieve all users from localStorage (persistent database)
+    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
     const users = JSON.parse(allUsers);
 
     // Check if user exists

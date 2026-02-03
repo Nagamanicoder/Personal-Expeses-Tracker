@@ -8,17 +8,23 @@ const displayBudget = document.getElementById('display-budget');
 const displayBudgetWarning = document.getElementById('display-budget-warning')
 const displayBalance = document.getElementById('display-balance')
 
-let budget = document.getElementById('budget');
+document.getElementById('set-budget').addEventListener('click', (e)=>{
+    e.preventDefault()
+    budget = document.getElementById('monthly-budget').value;
+})
+
 
 let expenses = [];
 let users = {};
 let currentFilter = "All";
 let spent = 0 ;
+let monthlyChartInstance = null;
+let budget = 0
 
-// Get logged-in user from localStorage
-const currentUserId = localStorage.getItem('currentUserId');
+// Get logged-in user from sessionStorage (current session)
+const currentUserId = sessionStorage.getItem('currentUserId');
 const userId = currentUserId; // Use email as userId
-// uid and user budget are computed when needed (in calculateExpensesTotal)
+// User expenses and budget are stored in localStorage, keyed by userId (email)
 
 // Per-user localStorage functions
 function saveExpensesForUser(userId, expensesArray) {
@@ -67,11 +73,20 @@ function loadUserData(userId) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    // if (!currentUserId) {
-    //     alert('Please log in first');
-    //     window.location.href = 'login.html';
-    //     return;
-    // }
+    if (!currentUserId) {
+        alert('Please log in first');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Verify user exists in localStorage (registered users database)
+    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
+    const registeredUsers = JSON.parse(allUsers);
+    if (!registeredUsers.hasOwnProperty(currentUserId)) {
+        alert('User not found. Please log in again.');
+        window.location.href = 'login.html';
+        return;
+    }
 
     // Load user's expenses and user data from localStorage
     expenses = loadExpensesForUser(currentUserId);
@@ -80,9 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If user already has a budget, display it and lock the input so it cannot be changed
     if (userData && userData.budget) {
-        document.getElementById('budget').value = userData.budget;
-        document.getElementById('budget').disabled = true;
+        // document.getElementById('budget').value = userData.budget;
+        // document.getElementById('budget').disabled = true;
     }
+
+    document.getElementById('profile-img').addEventListener('click', (e) => {
+        document.getElementById('profile-menu').classList.toggle('show')
+        document.getElementById('user-email').textContent = userId
+        e.stopPropagation()
+
+    })
 
     render();
 });
@@ -186,7 +208,7 @@ function calculateExpensesTotal(data) {
     // Use the logged-in user's id for budget lookups
     const uid = currentUserId;
     const userBudgetRaw = users[uid] && users[uid].budget !== undefined ? users[uid].budget : 0;
-    const userBudget = Number(userBudgetRaw) || 0;
+    const userBudget = Number(userBudgetRaw) || 0; 
 
     displayBudget.textContent = `Budget: ₹ ${userBudget}`;
     displayBalance.textContent = `Balance: ₹ ${userBudget - spent}`;
@@ -195,13 +217,13 @@ function calculateExpensesTotal(data) {
     const budgetLimit = userBudget * 0.8;
     const singleExpense = userBudget * 0.25;
     const filteredSingleExpense = expenses.filter((expense) => expense.userId === uid && Number(expense.expenseAmount) >= singleExpense);
-
-    if (spent >= budgetLimit) {
+        
+    if (spent > budgetLimit) {
         // overall budget exceeded
-        highlightAmount(null);
+        highlightAmount([], true);
     } else {
         // highlight individual large expenses (may be empty)
-        highlightAmount(filteredSingleExpense);
+        highlightAmount(filteredSingleExpense, false);
     }
         
 }
@@ -253,25 +275,23 @@ function render(){
 
     addExpenses(data);
     calculateExpensesTotal(data);
+    generateMonthlyExpenseChart();
 }
 
-function highlightAmount(typOfExpense){
+function highlightAmount(typOfExpense, budgetExceeded = false){
     // Clear previous highlights and warnings
     displayBudgetWarning.textContent = "";
     document.querySelectorAll('tr.single-expense-row').forEach(r => r.classList.remove('single-expense-row'));
 
-    // If typOfExpense is null -> overall budget warning
-    if (typOfExpense === null) {
-        displayBudgetWarning.textContent = "You spent more of your budget!";
-        return;
-    }
-
+    
     // If typOfExpense is an array with items, highlight matching rows
     if (Array.isArray(typOfExpense) && typOfExpense.length > 0) {
         typOfExpense
             .map(e => document.getElementById(e.rowId)?.closest("tr"))
             .filter(Boolean)
             .forEach(row => row.classList.add("single-expense-row"));
+    } else if (budgetExceeded) {
+        displayBudgetWarning.textContent = "You spent more of your budget!"
     }
 
 }

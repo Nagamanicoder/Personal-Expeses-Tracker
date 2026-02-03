@@ -1,17 +1,11 @@
-/* ======================================================
-   landingPage.css
-   Human-readable, well-commented, and editable stylesheet
-   For: Personal Expense Tracker landing page
-   ====================================================== */
 
-/* ========== Design Tokens / CSS Variables ========== */
 :root {
     /* Primary colors */
     --bg-1: #f6f8ff;
-    --accent: #3b82f6;           /* primary action color */
-    --accent-dark: #2563eb;      /* darker accent for hover */
-    --muted: #6b7280;            /* secondary / muted text */
-    --muted-light: #9ca3af;      /* lighter muted text */
+    --accent: #3b82f6;           
+    --accent-dark: #2563eb;      
+    --muted: #6b7280;            
+    --muted-light: #9ca3af;      
 
     /* Surfaces */
     --card: #ffffff;
@@ -259,125 +253,6 @@ body {
     padding: 0 0.25rem;
 }
 
-/* ========== Features Section ========== */
-.features-section {
-    padding: 2.5rem 0;
-    background: white;
-}
-
-.features-section h2 {
-    text-align: center;
-    margin: 0 0 1.75rem 0;
-    font-size: 1.75rem;
-    color: #111827;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.feature-card {
-    background: linear-gradient(135deg, rgba(59,130,246,0.04) 0%, rgba(255,255,255,0.95) 100%);
-    border: 1px solid rgba(59,130,246,0.1);
-    padding: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(59,130,246,0.12);
-}
-
-.feature-card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-}
-
-.feature-card h3 {
-    margin: 0.75rem 0 0.5rem 0;
-    color: #111827;
-    font-size: 1.1rem;
-}
-
-.feature-card p {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* ========== How It Works Section ========== */
-.how-it-works {
-    padding: 2.5rem 0;
-    background: linear-gradient(180deg, #f9fafb 0%, white 100%);
-}
-
-.how-it-works h2 {
-    text-align: center;
-    margin: 0 0 1.75rem 0;
-    font-size: 1.75rem;
-    color: #111827;
-}
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-}
-
-.step {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid rgba(59,130,246,0.1);
-    text-align: center;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.step:hover {
-    border-color: var(--accent);
-    box-shadow: 0 8px 16px rgba(59,130,246,0.1);
-}
-
-.step-number {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 28px;
-    height: 28px;
-    background: var(--accent);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.85rem;
-}
-
-.step-icon {
-    font-size: 2rem;
-    margin: 0.5rem 0;
-}
-
-.step h3 {
-    margin: 0.75rem 0 0.5rem 0;
-    color: #111827;
-    font-size: 1.05rem;
-}
-
-.step p {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin: 0;
-    line-height: 1.5;
-}
 
 /* ========== Guidelines Section (Timeline Layout) ========== */
 .guidelines-section {
@@ -716,172 +591,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ========== Carousel / How It Works ========== */
-.carousel-section {
-    background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(99,102,241,0.03));
-    border: 1px solid rgba(59,130,246,0.1);
-}
 
-.carousel-section h3 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.carousel {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    background: white;
-    padding: 2rem 1rem;
-    text-align: center;
-}
-
-.carousel-slides {
-    position: relative;
-    height: 300px;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-}
-
-.slide.active {
-    opacity: 1;
-}
-
-.slide-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-}
-
-.slide h4 {
-    margin: 0.5rem 0;
-    font-size: 1.25rem;
-    color: #111827;
-}
-
-.slide p {
-    color: var(--muted);
-    margin: 0.5rem 0 1rem 0;
-    max-width: 400px;
-}
-
-.slide-icon {
-    font-size: 3rem;
-    margin-top: 0.5rem;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--accent);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.2s ease;
-}
-
-.carousel-btn:hover {
-    background: var(--accent-dark);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-btn.prev {
-    left: 10px;
-}
-
-.carousel-btn.next {
-    right: 10px;
-}
-
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dot.active {
-    background: var(--accent);
-    transform: scale(1.3);
-}
-
-/* ========== Guidelines Section ========== */
-.guidelines-section {
-    background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(59,130,246,0.03));
-    border: 1px solid rgba(59,130,246,0.1);
-}
-
-.guidelines-section h3 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.guidelines-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.25rem;
-}
-
-.guideline-card {
-    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 100%);
-    padding: 1.25rem;
-    border-radius: 10px;
-    border: 1px solid rgba(59,130,246,0.08);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.guideline-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(59,130,246,0.1);
-    border-color: rgba(59,130,246,0.2);
-}
-
-.guideline-icon {
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-}
-
-.guideline-card h4 {
-    margin: 0.5rem 0;
-    color: #111827;
-    font-size: 1.1rem;
-}
-
-.guideline-card p {
-    color: var(--muted);
-    margin: 0.5rem 0 0 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
 
 /* ========== Signup Card (Right Sidebar) ========== */
 .signup-card {
@@ -1082,3 +792,8 @@ body {
     }
 }
 
+.budget{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

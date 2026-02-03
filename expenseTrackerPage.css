@@ -50,10 +50,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
+}
+
+.dashboard-toggle {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.dashboard-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.dashboard-toggle:active {
+    transform: translateY(0);
 }
 
 .tracker-header h1 {
-    text-align: left;
+    text-align: center;
     margin: 0;
     font-size: 1.5rem;
     color: var(--accent);
@@ -129,7 +151,10 @@ body {
 }
 
 .budget {
-    text-align: center;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
 }
 
 .budget input {
@@ -138,6 +163,7 @@ body {
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.2s ease;
+    min-width: 220px;
 }
 
 .budget input:focus {
@@ -145,6 +171,25 @@ body {
     border-color: var(--accent);
 }
 
+/* ========== Forms ========== */
+.profile-menu {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.profile-menu.show{
+    display: block;
+}
+
+.profile-image {
+    cursor: pointer; 
+}
 /* ========== Forms ========== */
 form {
     display: flex;
@@ -202,6 +247,24 @@ form select {
 }
 
 .submit-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Match styling for the Set Budget button */
+.set-budget-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.set-budget-btn:hover {
     background-color: var(--accent-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
@@ -365,5 +428,311 @@ form button:hover {
     h1 {
         font-size: 1.25rem;
         margin: 15px 0;
+    }
+}
+
+/* ========== SIDEBAR STYLES ========== */
+.main-wrapper {
+    display: flex;
+    min-height: calc(100vh - 80px);
+    gap: 0;
+    position: relative;
+}
+
+.sidebar {
+    width: 320px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    border-right: 1px solid #e2e8f0;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.03);
+    position: fixed;
+    left: -320px;
+    top: 80px;
+    height: calc(100vh - 80px);
+    transition: left 0.3s ease;
+    z-index: 200;
+}
+
+.sidebar.visible {
+    left: 0;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.visible {
+    display: block;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ========== USER PROFILE SECTION ========== */
+.user-profile {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(59, 130, 246, 0.15);
+}
+
+.profile-image-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+.upload-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+.upload-label:hover {
+    background: var(--accent-dark);
+    transform: scale(1.1);
+}
+
+.upload-icon {
+    font-size: 18px;
+}
+
+.user-name {
+    margin: 10px 0 5px 0;
+    font-size: 1.3rem;
+    color: #111827;
+    font-weight: 700;
+}
+
+.user-email {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--muted-light);
+}
+
+/* ========== USER SETTINGS SECTION ========== */
+.user-settings {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+}
+
+.settings-title {
+    margin: 0 0 15px 0;
+    font-size: 1rem;
+    color: #111827;
+    font-weight: 600;
+}
+
+.settings-item {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-item label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.settings-item select {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.settings-item select:hover,
+.settings-item select:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.main-content .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ========== GRAPH SECTION ========== */
+.graph-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: var(--shadow-lg);
+}
+
+.graph-section h3 {
+    margin-top: 0;
+    color: #111827;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.chart-container canvas {
+    max-height: 400px;
+}
+
+/* ========== RESPONSIVE SIDEBAR ========== */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 280px;
+        left: -280px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-image-container {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrapper {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        top: 80px;
+        height: auto;
+        max-height: calc(100vh - 80px);
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-content {
+        flex-direction: row;
+        gap: 20px;
+        overflow-x: auto;
+    }
+
+    .user-profile {
+        flex-shrink: 0;
+        width: 200px;
+        padding-right: 20px;
+        border-right: 2px solid rgba(59, 130, 246, 0.15);
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .user-settings {
+        flex-shrink: 0;
+        width: 250px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .main-content .container {
+        padding: 15px;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+/* Ensure budget input and set button stack nicely on small screens */
+@media (max-width: 480px) {
+    .budget {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .budget input,
+    .set-budget-btn {
+        width: 100%;
     }
 }
