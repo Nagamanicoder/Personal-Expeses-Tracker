@@ -1,92 +1,52 @@
-document.getElementById('signup-submit').addEventListener('click', (e) => {
+
+document.getElementById('signup-submit').addEventListener('click', function(e){
     e.preventDefault()
-    
-    const name = document.getElementById('signup-name').value.trim();
-    const email = document.getElementById('signup-email').value.trim();
-    const password = document.getElementById('signup-password').value;
-    const confirmPassword = document.getElementById('signup-confirm').value;
-
-    // Validate inputs
-    if (!validateSignup(name, email, password, confirmPassword)) {
-        document.getElementById('signup-form').reset()
-        return;
-    }
-
-    // Use email as userId
-    const userId = email;
-
-    // Create user object
-    const user = {
-        userId: userId,
-        name: name,
-        email: email,
-        password: password, // In production, hash this on backend!
-        createdAt: new Date().toISOString()
-    };
-
-    // Save user to localStorage (persistent user database)
-    saveUser(user);
-
-    // Store current logged-in user in sessionStorage (current session)
-    sessionStorage.setItem('currentUserId', userId);
-
-    alert('Account created successfully!');
-    // console.log('User registered:', userId);
-
-    // Redirect to expense tracker
-    window.location.href = 'expenseTrackerPage.html';
+    register()
 });
 
-function validateSignup(name, email, password, confirmPassword) {
-    // Validate name
-    if (!name || name.length < 2) {
-        alert('Name must be at least 2 characters long.');
-        return false;
+function register(){
+    const userName = document.getElementById('signup-name').value;
+    const userEmail = document.getElementById('signup-email').value;
+    const userPassword = document.getElementById('signup-password').value;
+    const userConfirmPassword = document.getElementById('signup-confirm').value;
+
+    const userData = {
+        userName: userName,
+        userEmail: userEmail,
+        userPassword: userPassword,
+        userConfirmPassword: userConfirmPassword
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return false;
+    if(validateUserInput(userData)){
+        clearInputFields()
+        toastr.options.timeOut = 1500; 
+        toastr.success('Signed Up successfully!');
+        setTimeout(function() {
+            window.location.href = "login.html";
+        }, 1500);
     }
-
-    // Check if email already exists
-    if (userExists(email)) {
-        alert('This email is already registered. Please login or use a different email.');
-        return false;
-    }
-
-    // Validate password length
-    if (!password || password.length < 6) {
-        alert('Password must be at least 6 characters long.');
-        return false;
-    }
-
-    // Validate password match
-    if (password !== confirmPassword) {
-        alert('Passwords do not match. Please try again.');
-        return false;
-    }
-
-    return true;
+    
 }
 
-function userExists(email) {
-    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
-    const users = JSON.parse(allUsers);
-    return users.hasOwnProperty(email);
+function validateUserInput(userData){
+
+    if(!userData.userName || !userData.userEmail || !userData.userPassword || !userData.userConfirmPassword){
+        toastr.options.timeOut = 2000; 
+        toastr.warning('Please enter valid details!');
+        return false
+    }
+    else if(userData.userPassword !== userData.userConfirmPassword){
+        toastr.options.timeOut = 2000; 
+        toastr.error('Password missmatch: Enter valid password!');
+        return false
+    }
+    return true
+
 }
 
-function saveUser(user) {
-    const allUsers = localStorage.getItem('expenseTracker.users') || '{}';
-    const users = JSON.parse(allUsers);
-    users[user.email] = {
-        // name: user.name, //when database connection happens, then put all information into the database
-        email: user.email,
-        password: user.password, // In production, hash this!
-        // createdAt: user.createdAt
-    };
-    localStorage.setItem('expenseTracker.users', JSON.stringify(users));
-    console.log('User saved to localStorage');
+function clearInputFields(){
+    document.getElementById('signup-name').value = ''
+    document.getElementById('signup-email').value = ''
+    document.getElementById('signup-password').value = ''
+    document.getElementById('signup-confirm').value = ''
 }

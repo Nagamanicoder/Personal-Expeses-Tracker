@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Expense Tracker</title>
     <link rel="stylesheet" href="landingPage.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    
 </head>
 <body>
     <header class="site-header">
@@ -39,7 +41,7 @@
                         <label for="signup-confirm">Confirm Password</label>
                         <input id="signup-confirm" type="password" placeholder="Confirm your password" required>
                     </div>
-                    <button class="btn primary full" type="button" id="signup-submit" >Create Account</button>
+                    <button class="btn primary full" type="submit" id="signup-submit" >Create Account</button>
                 </form>
 
                 <div class="auth-divider">
@@ -60,6 +62,12 @@
         </div>
     </footer>
 
-    <script src="signupAuth.js" defer></script>
+    <!-- toastr -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+    <script src="signupAuth.js"></script>
+
+
 </body>
 </html>
